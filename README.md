@@ -10,6 +10,3 @@ Goozo - a Discord Bot for some fun activities
 
 ### Images
 
-![The latest XKCD comic strip](/assets/goozo-ss1.png "Latest XKCD")
-![A custom XKCD comic strip](/assets/goozo-ss2.png "Custom XKCD")
-![A random useless fact](/assets/goozo-ss3.png "Useless Fact")
