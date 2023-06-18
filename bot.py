@@ -1,6 +1,8 @@
 import os
 
 import discord
+from discord.ext import commands
+from fetchxkcd import fetchLatest
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -9,18 +11,11 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 intents = discord.Intents.default()
 intents.message_content = True
 
-client = discord.Client(intents=intents)
+bot = commands.Bot(command_prefix='heygz ',intents=intents)
 
-@client.event
-async def on_ready():
-    print(f'{client.user} has connected to Discord!')
+@bot.command(name='xkcd', help='Returns an XKCD comic strip')
+async def getXKCD(ctx):
+    response = fetchLatest()
+    await ctx.send(response['num'])
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-    
-    if message.content == 'Hello Goozo!':
-        await message.channel.send(f'Hello {message.author}')
-
-client.run(TOKEN)
+bot.run(TOKEN)
