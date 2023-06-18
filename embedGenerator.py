@@ -13,7 +13,7 @@ def uselessFactEmbed(response):
     embd = discord.Embed(title='Random Useless Fact',url=response['source_url'],description=response['text'])
     return embd
 
-def coffeeEmbed(response):
-    embd = discord.Embed(title="Here's your coffee!")
+def coffeeEmbed(response, curUser):
+    embd = discord.Embed(title="Here's your coffee!", description=f'Fresh coffee served for {curUser}!')
     embd.set_image(url=response['file'])
     return embd

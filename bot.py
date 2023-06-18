@@ -32,8 +32,10 @@ async def getUselessFact(ctx):
 
 @bot.command(name='coffee', help='A random coffee image')
 async def deliverCoffee(ctx):
+    curUser = ctx.message.author
     response = fetchCoffee.getCoffee()
-    embd = embedGenerator.coffeeEmbed(response)
+    embd = embedGenerator.coffeeEmbed(response, curUser)
     await ctx.send(embed=embd)
+    await ctx.send(curUser.mention)
 
 bot.run(TOKEN)
