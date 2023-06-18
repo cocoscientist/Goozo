@@ -24,4 +24,10 @@ async def getXKCD(ctx, edition:int=None):
     embd = embedGenerator.XKCDEmbed(response)
     await ctx.send(embed=embd)
 
+@bot.command(name='uselessfact', help='A random useless fact (with source)')
+async def getUselessFact(ctx):
+    response = fetchUselessFact.getRandomFact()
+    embd = embedGenerator.uselessFactEmbed(response)
+    await ctx.send(embed=embd)
+
 bot.run(TOKEN)

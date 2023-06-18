@@ -8,3 +8,7 @@ def XKCDEmbed(response):
     embd.set_image(url=response['img'])
     embd.set_footer(text=f'XKCD {num} - {d}/{m}/{y}')
     return embd
+
+def uselessFactEmbed(response):
+    embd = discord.Embed(title='Random Useless Fact',url=response['source_url'],description=response['text'])
+    return embd
