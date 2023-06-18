@@ -2,7 +2,8 @@ import os
 
 import discord
 from discord.ext import commands
-from fetchxkcd import fetchLatest, fetchByNum
+from serviceCaller import *
+import embedGenerator
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -17,15 +18,10 @@ bot = commands.Bot(command_prefix='heygz ',intents=intents)
 async def getXKCD(ctx, edition:int=None):
     response = None
     if edition is None:
-        response = fetchLatest()
+        response = fetchxkcd.fetchLatest()
     else:
-        response = fetchByNum(edition)
-    num = response['num']
-    d, m, y = response['day'], response['month'], response['year']
-    embd = discord.Embed(title=response['title'],url=f'https://xkcd.com/{num}',description=response['alt'])
-    embd.set_author(name='Randall Munroe')
-    embd.set_image(url=response['img'])
-    embd.set_footer(text=f'XKCD {num} - {d}/{m}/{y}')
+        response = fetchxkcd.fetchByNum(edition)
+    embd = embedGenerator.XKCDEmbed(response)
     await ctx.send(embed=embd)
 
 bot.run(TOKEN)
