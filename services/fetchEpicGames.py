@@ -21,7 +21,13 @@ def fetchGames():
                     gameImg = image['url']
             finalInsertion['image'] = gameImg
 
-            finalInsertion['url'] = f"https://store.epicgames.com/fr/p/{game['catalogNs']['mappings'][0]['pageSlug']}"
+            startDateIso = game_promotions['promotionalOffers'][0]['promotionalOffers'][0]['startDate']
+            endDateIso = game_promotions['promotionalOffers'][0]['promotionalOffers'][0]['endDate']
+
+            finalInsertion['startDate'] = datetime.fromisoformat(startDateIso)
+            finalInsertion['endDate'] = datetime.fromisoformat(endDateIso)
+
+            finalInsertion['url'] = f"https://store.epicgames.com/en/p/{game['catalogNs']['mappings'][0]['pageSlug']}"
 
             finalGameData.append(finalInsertion)
 
@@ -37,5 +43,5 @@ def currentGameData(itemNo:int):
 
     gameData = allGamesData[itemNo-1]
 
-    gameData['dates'] = f"Item {itemNo} of {length}"
+    gameData['footer'] = f"Item {itemNo} of {length}"
     return gameData

@@ -22,5 +22,7 @@ def egsEmbed(response):
     embd = discord.Embed(title=response['title'],url=response['url'],description=response['desc'])
     embd.set_author(name=response['publisher'])
     embd.set_image(url=response['image'])
-    embd.set_footer(text=response['dates'])
+    embd.add_field(name="Start Date", value=response['startDate'], inline=True)
+    embd.add_field(name="End Date", value=response['endDate'], inline=True)
+    embd.set_footer(text=response['footer'])
     return embd
