@@ -17,3 +17,10 @@ def coffeeEmbed(response, curUser):
     embd = discord.Embed(title="Here's your coffee!", description=f'Fresh coffee served for {curUser}!')
     embd.set_image(url=response['file'])
     return embd
+
+def egsEmbed(response):
+    embd = discord.Embed(title=response['title'],url=response['url'],description=response['desc'])
+    embd.set_author(name=response['publisher'])
+    embd.set_image(url=response['image'])
+    embd.set_footer(text=response['dates'])
+    return embd

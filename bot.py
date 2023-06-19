@@ -15,8 +15,10 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='heygz ',intents=intents)
 
 @bot.command(name='egs', help='Returns games currently available for free on the Epic Games Store')
-async def getFreeEpicGames(ctx, page:int=None):
-    await ctx.send('Here are your free games')
+async def getFreeEpicGames(ctx, page:int=1):
+    response = fetchEpicGames.currentGameData(page)
+    embd = embedGenerator.egsEmbed(response)
+    await ctx.send(embed=embd)
 
 @bot.command(name='xkcd', help='Returns an XKCD comic strip')
 async def getXKCD(ctx, edition:int=None):
